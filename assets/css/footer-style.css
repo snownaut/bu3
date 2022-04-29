@@ -1,0 +1,34 @@
+/* FOOTER STYLE */
+
+footer {
+    padding: 15px 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+footer a {
+    color: rgba(249, 59, 47);
+    text-decoration: none;
+}
+
+footer ul li {
+    display: inline-block;
+}
+
+
+/* Media queries for desktop version */
+
+@media only screen and (min-width: 800px) {
+    footer {
+        padding: 15px 20%;
+        flex-direction: row;
+    }
+}

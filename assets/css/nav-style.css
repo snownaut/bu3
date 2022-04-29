@@ -1,0 +1,49 @@
+/* HEADER STYLE */
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    background-color: rgba(249, 59, 47);
+}
+
+header h1 {
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+header ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+header ul li {
+    padding: 0 5px;
+}
+
+header ul li a {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+header ul li a.active {
+    border-bottom: 2px solid #FFF;
+}
+
+
+/* Media queries for desktop version */
+
+@media only screen and (min-width: 800px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    header ul li a {
+        font-size: 1rem;
+    }
+}

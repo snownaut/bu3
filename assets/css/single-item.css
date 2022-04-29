@@ -1,0 +1,104 @@
+.btn {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    color: #FFF;
+    background-color: rgba(249, 59, 47);
+}
+
+main {
+    padding: 50px 10px;
+}
+
+#detail-section {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.image-container {
+    width: 100%;
+}
+
+.image-container img {
+    width: 100%;
+}
+
+.text-container {
+    width: 100%;
+    color: black;
+}
+
+h2 {
+    font-weight: 900;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.text-container h3,
+.text-container h4 {
+    font-weight: 600;
+    color: #000;
+}
+
+.text-container h3,
+.text-container h4,
+.text-container p {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 15px;
+}
+
+ul.social-icons {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style: none;
+}
+
+ul.social-icons li.share-links {
+    font-size: 1rem;
+    border: 1px solid blue;
+    border-radius: 30px;
+    padding: 10px;
+    color: rgba(249, 59, 47);
+    margin-right: 15px;
+}
+
+ul.social-icons li.share-links:nth-of-type(2) {
+    border-color: cyan;
+}
+
+ul.social-icons li.share-links:last-child {
+    border-color: rgba(249, 59, 47);
+}
+
+ul.social-icons li.social-links {
+    margin: 0 10px;
+    opacity: 0.7;
+}
+
+
+/* Media queries for desktop version */
+
+@media only screen and (min-width: 800px) {
+    #detail-section {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .image-container,
+    .text-container {
+        width: 49%;
+    }
+    main {
+        padding: 100px 20%;
+    }
+    .text-container p {
+        margin-bottom: 30px;
+    }
+}

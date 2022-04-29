@@ -1,0 +1,17 @@
+/* GLOBAL STYLE */
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #FFF;
+}
+
+h2 {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
