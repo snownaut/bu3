@@ -1,5 +1,8 @@
 /* HEADER STYLE */
-
+a {
+  text-decoration: none;
+  color: white;
+}
 header {
   display: flex;
   flex-direction: row;
@@ -44,6 +47,7 @@ header ul li a {
   text-decoration: none;
   font-size: 1.5rem;
   padding: 0.1rem 0.4rem 0.1rem 0.4rem;
+  font-weight: bolder;
 }
 
 header ul li a:hover {
@@ -62,6 +66,7 @@ header ul li a:hover {
     font-size: 1.8rem;
   }
   header ul li a {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
   }
 }

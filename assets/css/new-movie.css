@@ -1,5 +1,7 @@
 /* HERO Section */
-
+.suggested-movies {
+  color: black;
+}
 #hero {
   display: flex;
   flex-direction: column;

@@ -85,6 +85,11 @@
   text-overflow: ellipsis;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
 /* Media queries for desktop version */
 
 @media only screen and (min-width: 800px) {

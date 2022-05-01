@@ -10,7 +10,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/4515ebb137.js" crossorigin="anonymous"></script>
@@ -26,7 +27,7 @@
 
 <body>
     <header>
-        <?php require_once '../components/nav/nav.html'; ?>
+        <?php require_once "../components/nav/nav.html"; ?>
     </header>
 
     <main>
@@ -37,58 +38,129 @@
         </form>
 
         <form>
-            <button type="submit" class="sort-btn" name="sortBtn"> Sort by title</button>
+            <input type="submit" class="button" name="sortNameBtn" value="SortByName" />
+            <input type="submit" class="button" name="sortViewsBtn" value="SortByViews" />
         </form>
 
         <div id="movies-container">
             <?php
+            $conn = mysqli_connect("localhost", "root", "root", "movie_db");
 
-            $conn = mysqli_connect('localhost', 'root', '', 'movie_db');
-
-            if (isset($_POST['sortBtn'])) {
-
-                $query = 'SELECT *
+            if (isset($_GET["sortNameBtn"])) {
+              $query = 'SELECT *
                 FROM movies
-                ORDER BY id ASC';
+                ORDER BY title ASC';
 
-                //Executing the query (send query to DB)
-                $results = mysqli_query($conn, $query);
+              //Executing the query (send query to DB)
+              $results = mysqli_query($conn, $query);
 
-                // Fetch the results as an associative array
-                $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
+              // Fetch the results as an associative array
+              $moviess = mysqli_fetch_all($results, MYSQLI_ASSOC);
 
+              foreach ($moviess as $movie) {
+                echo "<div class='movie-card'><h3>" .
+                  $movie["title"] .
+                  "</h3>" .
+                  "<a href=movie.php?id=" .
+                  $movie["id"] .
+                  ">" .
+                  "<img src =" .
+                  $movie["poster"] .
+                  " >" .
+                  "</a>" .
+                  "<br> <p>Views: " .
+                  $movie["views"] .
+                  "</p><br>" .
+                  $movie["id"] .
+                  "</div>";
+              }
+              mysqli_close($conn);
+            }
+            if (isset($_GET["sortViewsBtn"])) {
+              $query = 'SELECT *
+                  FROM movies
+                  ORDER BY views ASC';
 
-                foreach ($movies as $movie) {
-                    echo "<div class='movie-card'><h3>" . $movie["title"] . "</h3>" . "<a href=movie.php?id=" .
-                        $movie["id"] .
-                        ">" .
-                        "<img src =" .
-                        $movie["poster"] .
-                        " >" .
-                        "</a>" .
-                        "<br> <p>Views: " . $movie["views"] . "</p><br>" . $movie["id"] . "</div>";
-                }
-                mysqli_close($conn);
+              //Executing the query (send query to DB)
+              $results = mysqli_query($conn, $query);
+
+              // Fetch the results as an associative array
+              $moviess = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+              foreach ($moviess as $movie) {
+                echo "<div class='movie-card'><h3>" .
+                  $movie["title"] .
+                  "</h3>" .
+                  "<a href=movie.php?id=" .
+                  $movie["id"] .
+                  ">" .
+                  "<img src =" .
+                  $movie["poster"] .
+                  " >" .
+                  "</a>" .
+                  "<br> <p>Views: " .
+                  $movie["views"] .
+                  "</p><br>" .
+                  $movie["id"] .
+                  "</div>";
+              }
+              mysqli_close($conn);
             } else {
-                $query = "SELECT * FROM movies";
-                $results = mysqli_query($conn, $query);
-                $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
+              $query = 'SELECT *
+                    FROM movies
+                    ORDER BY id ASC';
 
+              //Executing the query (send query to DB)
+              $results = mysqli_query($conn, $query);
 
-                foreach ($movies as $movie) {
-                    echo "<div class='movie-card'><h3>" . $movie["title"] . "</h3>" . "<a href=movie.php?id=" .
-                        $movie["id"] .
-                        ">" .
-                        "<img src =" .
-                        $movie["poster"] .
-                        " >" .
-                        "</a>" .
-                        "<br> <p>Views: " . $movie["views"] . "</p><br>" . $movie["id"] . "</div>";
-                }
-                mysqli_close($conn);
+              // Fetch the results as an associative array
+              $moviess = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+              foreach ($moviess as $movie) {
+                echo "<div class='movie-card'><h3>" .
+                  $movie["title"] .
+                  "</h3>" .
+                  "<a href=movie.php?id=" .
+                  $movie["id"] .
+                  ">" .
+                  "<img src =" .
+                  $movie["poster"] .
+                  " >" .
+                  "</a>" .
+                  "<br> <p>Views: " .
+                  $movie["views"] .
+                  "</p><br>" .
+                  $movie["id"] .
+                  "</div>";
+              }
+              mysqli_close($conn);
             }
 
-            ?>
+/* else {
+              $query = "SELECT * FROM movies";
+              $results = mysqli_query($conn, $query);
+              $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+              foreach ($movies as $movie) {
+                echo "<div class='movie-card'><h3>" .
+                  $movie["title"] .
+                  "</h3>" .
+                  "<a href=movie.php?id=" .
+                  $movie["id"] .
+                  ">" .
+                  "<img src =" .
+                  $movie["poster"] .
+                  " >" .
+                  "</a>" .
+                  "<br> <p>Views: " .
+                  $movie["views"] .
+                  "</p><br>" .
+                  $movie["id"] .
+                  "</div>";
+              }
+              mysqli_close($conn);
+            } */
+?>
 
 
 
@@ -99,7 +171,7 @@
     </main>
 
     <footer>
-        <?php require_once '../components/footer/footer.html'; ?>
+        <?php require_once "../components/footer/footer.html"; ?>
     </footer>
 </body>
 

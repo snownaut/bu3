@@ -1,36 +1,31 @@
 <?php
 
 // 1. Connect to the D.B.
-$id = $_GET['id'];
-$conn = mysqli_connect('localhost', 'root', '', 'movie_db');
+$id = $_GET["id"];
+$conn = mysqli_connect("localhost", "root", "root", "movie_db");
 
 // True if you are connected, false if not
 
 if ($conn) {
-
-    //2. Prepare the query
-    $query = "SELECT directors.id, directors.name,directors.nationality, directors.picture, movies.title, movies.poster, movies.views
+  //2. Prepare the query
+  $query = "SELECT directors.id, directors.name,directors.nationality, directors.picture, movies.title, movies.poster, movies.views
      FROM movies
      RIGHT JOIN directors
      ON directors.id = movies.director_id
      WHERE directors.id=$id";
 
+  //3. Executing the query (send query to DB)
+  $results = mysqli_query($conn, $query);
 
-    //3. Executing the query (send query to DB)
-    $results = mysqli_query($conn, $query);
-
-    // I retrieved results but I need to fetch before using them
-    // 4. Fetch the results as an associative array
-    $directors = mysqli_fetch_all($results, MYSQLI_ASSOC);
+  // I retrieved results but I need to fetch before using them
+  // 4. Fetch the results as an associative array
+  $directors = mysqli_fetch_all($results, MYSQLI_ASSOC);
 } else {
-    echo 'Problem with connection!';
+  echo "Problem with connection!";
 }
 
 // Close the connection
 mysqli_close($conn);
-
-
-
 ?>
 
 
@@ -45,7 +40,8 @@ mysqli_close($conn);
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/4515ebb137.js" crossorigin="anonymous"></script>
@@ -61,21 +57,21 @@ mysqli_close($conn);
 <body>
 
     <header>
-        <?php require_once '../components/nav/nav.html'; ?>
+        <?php require_once "../components/nav/nav.html"; ?>
     </header>
 
 
     <main>
 
         <div class="directors_container">
-            <?= '<img src="' . $directors[0]['picture'] . '" width="150vh" >'; ?>
+            <?= '<img src="' . $directors[0]["picture"] . '" width="150vh" >' ?>
             <p>
-                <strong> <?= $directors[0]['name']; ?></strong>
+                <strong> <?= $directors[0]["name"] ?></strong>
 
             </p>
             <p>
                 Nationality:
-                <?= $directors[0]['nationality']; ?>
+                <?= $directors[0]["nationality"] ?>
             </p>
             <p>
                 Number of movies:
@@ -85,19 +81,21 @@ mysqli_close($conn);
             <br>
             <h3> MOVIES </h3>
             <div>
-                <?php foreach ($directors as $director) : ?>
-                    <br>
-                    <p>
-                        <?= $director['title']; ?>
-                    </p>
-                    <br>
-                    <?= '<img src="' . $director['poster'] . '" width="200vh" >'; ?>
-                    <p>
-                        <strong> Views:</strong>
-                        <?= $director['views']; ?>
-                    </p>
+                <?php foreach ($directors as $director): ?>
+                <br>
+                <p>
+                    <?= $director["title"] ?>
+                </p>
+                <br>
+                <?= '<img src="' .
+                      $director["poster"] .
+                      '" width="200vh" >' ?>
+                <p>
+                    <strong> Views:</strong>
+                    <?= $director["views"] ?>
+                </p>
 
-                    <hr>
+                <hr>
                 <?php endforeach; ?>
             </div>
 
@@ -106,9 +104,9 @@ mysqli_close($conn);
 
     </main>
     <footer>
-        <?php require_once '../components/footer/footer.html'; ?>
+        <?php require_once "../components/footer/footer.html"; ?>
     </footer>
-    
+
     <script src="scripts/home.js"></script>
 </body>
 

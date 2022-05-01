@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Movie</title>
+    <title>New Director</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,12 +28,13 @@
     <main>
         <section id="hero">
             <div class="hero-card">
-                <h2>Add <span>your</span> movie </h2>
+                <h2>Add <span>a</span> director </h2>
                 <form method="get">
-                    <input id="title" name="title" type="text" placeholder="Enter Movie Title" />
-                    <input id="views" name="views" type="number" placeholder="Enter Movie Views" />
-                    <input id="poster" name="poster" type="text" placeholder="Enter Poster Link" />
+                    <input id="Enter Director Name" name="name" type="text" placeholder="Enter Director Name" />
                     <input id="directorId" name="directorId" type="number" placeholder="Enter Director ID" />
+                    <input id="birthDate" name="birthDate" type="date" placeholder="Add Director Birth Date" />
+                    <input id="picture" name="picture" type="text" placeholder="Add Director Picture link" />
+
                     <input class="btn" id="submit" type="submit" name="submit" href="#"></input>
                 </form>
             </div>
@@ -53,15 +54,16 @@
                 // True if you connected, false if not
                 if ($conn) {
                   if (isset($_GET["submit"])) {
-                    $title = $_GET["title"];
-                    $views = $_GET["views"];
-                    $poster = $_GET["poster"];
-                    $director = $_GET["directorId"];
-                    $query = "INSERT INTO movies(title, views, poster, director_id)
-                  VALUES('$title' , '$views', '$poster', '$director')";
-                    /* echo $query; */
+                    $name = $_GET["name"];
+                    $directorId = $_GET["directorId"];
+                    $birthDate = $_GET["birthDate"];
+                    $picture = $_GET["picture"];
+                    $nationality = $_GET["nationality"];
+                    $query = "INSERT INTO directors(name, id, birth_date, picture)
+                  VALUES('$name' , '$directorId', '$birthDate', '$picture')";
+                    /*  var_dump($query); */
                     $result = mysqli_query($conn, $query);
-                    /*   echo $_GET["title"]; */
+                    /*    echo $_GET["name"]; */
                     if ($result) {
                       echo "Successfully inserted in the DB!";
                     } else {

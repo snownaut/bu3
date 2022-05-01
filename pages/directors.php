@@ -1,35 +1,34 @@
 <?php
 
-// WORKING WITH DATABASE 
+// WORKING WITH DATABASE
 
 // 1. Connect to the D.B.
 
-$conn = mysqli_connect('localhost', 'root', '', 'movie_db');
+$conn = mysqli_connect("localhost", "root", "root", "movie_db");
 
 // True if you are connected, false if not
 
 if ($conn) {
+  //2. Prepare the query
+  echo "Connected";
 
-    //2. Prepare the query
-    $query = 'SELECT directors.id, directors.name,directors.nationality, directors.picture, COUNT(*)
-    FROM movies
-    RIGHT JOIN directors
-    ON directors.id = movies.director_id
-    GROUP BY directors.name';
+  $query = 'SELECT a.id, a.name,a.nationality, a.picture, COUNT(*)
+  FROM directors a 
+  INNER JOIN movies b ON b.director_id = a.id
+  GROUP BY a.id;';
 
-    //3. Executing the query (send query to DB)
-    $results = mysqli_query($conn, $query);
+  //3. Executing the query (send query to DB)
+  $results = mysqli_query($conn, $query);
 
-    // I retrieved results but I need to fetch before using them
-    // 4. Fetch the results as an associative array
-    $directors = mysqli_fetch_all($results, MYSQLI_ASSOC);
+  // I retrieved results but I need to fetch before using them
+  // 4. Fetch the results as an associative array
+  $directors = mysqli_fetch_all($results, MYSQLI_ASSOC);
 } else {
-    echo 'Problem with connection!';
+  echo "Problem with connection!";
 }
 
 // Close the connection
 mysqli_close($conn);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +41,8 @@ mysqli_close($conn);
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/4515ebb137.js" crossorigin="anonymous"></script>
@@ -58,37 +58,39 @@ mysqli_close($conn);
 <body>
 
     <header>
-        <?php require_once '../components/nav/nav.html'; ?>
+        <?php require_once "../components/nav/nav.html"; ?>
     </header>
 
     <main>
         <h2> Movies directors </h2>
-        <?php foreach ($directors as $director) : ?>
-            <div class="directors_container">
+        <?php foreach ($directors as $director): ?>
+        <div class="directors_container">
 
-                <p>
-                    <strong> Name:</strong>
-                    <?= $director['name']; ?>
-                </p>
-                <?= '<img src="' . $director['picture'] . '" width="150vh" >'; ?>
-                <p>
-                    <strong> Nationality:</strong>
-                    <?= $director['nationality']; ?>
-                </p>
-                <p>
-                    <strong> Number of movies:</strong>
-                    <?= $director['COUNT(*)']; ?>
-                </p>
+            <p>
+                <strong> Name:</strong>
+                <?= $director["name"] ?>
+            </p>
+            <?= '<img src="' . $director["picture"] . '" width="150vh" >' ?>
+            <p>
+                <strong> Nationality:</strong>
+                <?= $director["nationality"] ?>
+            </p>
+            <p>
+                <strong> Number of movies:</strong>
+                <?= $director["COUNT(*)"] ?>
+            </p>
 
-                <?= ' <a href="director.php?id=' . $director['id'] . '"><button> Show more </button></a> ' ?>
+            <?= ' <a href="director.php?id=' .
+              $director["id"] .
+              '"><button> Show more </button></a> ' ?>
 
-            </div>
+        </div>
 
         <?php endforeach; ?>
     </main>
 
     <footer>
-        <?php require_once '../components/footer/footer.html'; ?>
+        <?php require_once "../components/footer/footer.html"; ?>
     </footer>
 
     <script src="scripts/home.js"></script>
