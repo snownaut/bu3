@@ -33,25 +33,32 @@
         $id = $_GET["id"];
         if ($conn) {
           echo "Connected!" . "<br>";
-
-          $query = "SELECT * 
+          if (empty($id)) {
+            echo "Please enter an ID";
+          } else {
+            $query = "SELECT * 
   FROM movies a 
   INNER JOIN directors b ON a.director_id = b.id
   WHERE a.id=$id
   ";
-          $results = mysqli_query($conn, $query);
-          $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
-          foreach ($movies as $movie) {
-            echo "<img src =" .
-              $movie["poster"] .
-              " width=500px height=800px>" .
-              "<br>";
-            echo "Tite : " . $movie["title"] . "<br>";
-            echo "Views : " . $movie["views"] . "<br>";
-            echo "<hr>";
-            echo $id;
+            $results = mysqli_query($conn, $query);
+            $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
+            if (empty($movies)) {
+              echo "no match";
+            } else {
+              foreach ($movies as $movie) {
+                echo "<img src =" .
+                  $movie["poster"] .
+                  " width=500px height=800px>" .
+                  "<br>";
+                echo "Tite : " . $movie["title"] . "<br>";
+                echo "Views : " . $movie["views"] . "<br>";
+                echo "<hr>";
+                echo $id;
 
-            echo "Birth Date" . $movie["birth_date"] . "<br>";
+                echo "Birth Date" . $movie["birth_date"] . "<br>";
+              }
+            }
           }
         }
         ?>
