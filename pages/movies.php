@@ -10,8 +10,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/4515ebb137.js" crossorigin="anonymous"></script>
@@ -19,70 +18,88 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/global-style.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/nav-style.css" />
     <link rel="stylesheet" href="../assets/css/directors-style.css" />
-    <link rel="stylesheet" href="../assets/css/footer-style.css" />
+    <link rel="stylesheet" href="../assets/css/movies-list.css" />
+
+
 </head>
 
 <body>
     <header>
-        <h1>MovieSuggest</h1>
-
-        <ul>
-            <li>
-                <a class="active" href="./index.html ">Home</a>
-            </li>
-            <li>
-                <a href="./single-item.html ">Movies</a>
-            </li>
-            <li>
-                <a href="../pages/directors.php ">Movies directors</a>
-            </li>
-            <li>
-                <a href="# ">Contact</a>
-            </li>
-        </ul>
+        <?php require_once '../components/nav/nav.html'; ?>
     </header>
 
     <main>
-        <?php
-      $conn = mysqli_connect("localhost", "root", "root", "movie_db");
-      if ($conn) {
-        echo "Connected!" . "<br>";
-
-        $query = "SELECT * FROM movies";
-        $results = mysqli_query($conn, $query);
-        $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
-        foreach ($movies as $movie) {
-          echo "<a href=movie.php?id=" .
-            $movie["id"] .
-            ">" .
-            "<img src =" .
-            $movie["poster"] .
-            " width=500px height=800px>" .
-            "</a>" .
-            "<br>";
-          echo "Views : " . $movie["views"] . "<br>";
-          echo $movie["id"];
-          echo "<hr>";
-        }
-      }
-      ?>
         <form action="movie.php" method="get">
             ENTER MOVIE ID: <input type="text" name="id"><br>
 
             <input type="submit">
         </form>
+
+        <form>
+            <button type="submit" class="sort-btn" name="sortBtn"> Sort by title</button>
+        </form>
+
+        <div id="movies-container">
+            <?php
+
+            $conn = mysqli_connect('localhost', 'root', '', 'movie_db');
+
+            if (isset($_POST['sortBtn'])) {
+
+                $query = 'SELECT *
+                FROM movies
+                ORDER BY id ASC';
+
+                //Executing the query (send query to DB)
+                $results = mysqli_query($conn, $query);
+
+                // Fetch the results as an associative array
+                $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+
+                foreach ($movies as $movie) {
+                    echo "<div class='movie-card'><h3>" . $movie["title"] . "</h3>" . "<a href=movie.php?id=" .
+                        $movie["id"] .
+                        ">" .
+                        "<img src =" .
+                        $movie["poster"] .
+                        " >" .
+                        "</a>" .
+                        "<br> <p>Views: " . $movie["views"] . "</p><br>" . $movie["id"] . "</div>";
+                }
+                mysqli_close($conn);
+            } else {
+                $query = "SELECT * FROM movies";
+                $results = mysqli_query($conn, $query);
+                $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+
+                foreach ($movies as $movie) {
+                    echo "<div class='movie-card'><h3>" . $movie["title"] . "</h3>" . "<a href=movie.php?id=" .
+                        $movie["id"] .
+                        ">" .
+                        "<img src =" .
+                        $movie["poster"] .
+                        " >" .
+                        "</a>" .
+                        "<br> <p>Views: " . $movie["views"] . "</p><br>" . $movie["id"] . "</div>";
+                }
+                mysqli_close($conn);
+            }
+
+            ?>
+
+
+
+
+        </div>
+
+
     </main>
+
     <footer>
-        <p>
-            2022 &copy; All Rights Reserved.&nbsp;<a href="#">Privacy Policy</a>
-        </p>
-        <ul>
-            <li>FB</li>
-            <li>In</li>
-            <li>Twitter</li>
-        </ul>
+        <?php require_once '../components/footer/footer.html'; ?>
     </footer>
 </body>
 

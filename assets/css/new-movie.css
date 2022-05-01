@@ -1,0 +1,93 @@
+/* HERO Section */
+
+#hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url("https://wallpapercave.com/wp/wp5483697.jpg");
+  background-size: cover;
+  background-position: top center;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+}
+
+.hero-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1.5vh 1vh 1.5vh 1vh;
+
+  background-color: rgba(68, 68, 68, 0.815);
+  width: 100%;
+}
+
+#hero input {
+  margin-top: 15px;
+  font-size: 1rem;
+  height: 50px;
+  width: 100%;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+#hero .btn {
+  color: #fff;
+  background: linear-gradient(
+    -90deg,
+    rgba(209, 51, 204, 1) 0%,
+    rgba(252, 121, 121, 0.9009978991596639) 100%
+  );
+  outline: none;
+  border-radius: 0.5rem;
+  width: 40%;
+}
+
+/* Media queries for desktop version */
+
+@media only screen and (min-width: 800px) {
+  #hero h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  #hero h2 span {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: linear-gradient(
+      -90deg,
+      rgba(209, 51, 204, 1) 0%,
+      rgba(252, 121, 121, 0.9009978991596639) 100%
+    );
+  }
+
+  .suggested-movies .suggested-movie {
+    width: 30%;
+    margin: 0 1%;
+  }
+
+  #hero form {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  #suggestions {
+    padding: 0px 20%;
+    margin: 100px 0;
+  }
+
+  .movie-details {
+    padding: 20px 20px;
+  }
+
+  .movie-details h3 {
+    margin-bottom: 10px;
+  }
+}

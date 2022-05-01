@@ -1,0 +1,53 @@
+#movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  height: fit-content;
+  width: 100%;
+}
+
+#movies-container a {
+  width: 200px;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+
+  margin: 2vh 2vh 2vh 2vh;
+
+  padding: 3vh 2vh 3vh 2vh;
+  width: 25vh;
+  background-color: rgb(252, 250, 251);
+  box-shadow: 3px 7px 11px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 1vh;
+}
+
+.movie-card h3 {
+  text-transform: uppercase;
+}
+
+.movie-card a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-card a img {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1vh 0vh 1vh 0vh;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.movie-card p {
+  text-transform: uppercase;
+}

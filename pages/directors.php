@@ -9,7 +9,6 @@ $conn = mysqli_connect('localhost', 'root', '', 'movie_db');
 // True if you are connected, false if not
 
 if ($conn) {
-    echo 'Connected ! ' . '<br>';
 
     //2. Prepare the query
     $query = 'SELECT directors.id, directors.name,directors.nationality, directors.picture, COUNT(*)
@@ -51,32 +50,16 @@ mysqli_close($conn);
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/global-style.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/nav-style.css" />
     <link rel="stylesheet" href="../assets/css/directors-style.css" />
-    <link rel="stylesheet" href="../assets/css/footer-style.css" />
+
 
 </head>
 
 <body>
+
     <header>
-        <h1>MovieSuggest</h1>
-
-        <ul>
-            <li>
-                <a class="active" href="./index.html ">Home</a>
-            </li>
-            <li>
-                <a href="./single-item.html ">Movies</a>
-            </li>
-            <li>
-                <a href="../pages/directors.php ">Movies directors</a>
-            </li>
-            <li>
-                <a href="# ">Contact</a>
-            </li>
-        </ul>
+        <?php require_once '../components/nav/nav.html'; ?>
     </header>
-
 
     <main>
         <h2> Movies directors </h2>
@@ -105,14 +88,7 @@ mysqli_close($conn);
     </main>
 
     <footer>
-        <p>
-            2022 &copy; All Rights Reserved.&nbsp;<a href="#">Privacy Policy</a>
-        </p>
-        <ul>
-            <li>FB</li>
-            <li>In</li>
-            <li>Twitter</li>
-        </ul>
+        <?php require_once '../components/footer/footer.html'; ?>
     </footer>
 
     <script src="scripts/home.js"></script>

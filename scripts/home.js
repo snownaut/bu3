@@ -34,7 +34,7 @@ searchBtn.addEventListener("click", () => {
         tvshowElement.appendChild(tvshowDetailsElement);
 
         const tvshowLinkElement = document.createElement("a");
-        tvshowLinkElement.href = `/single-item.html?movieid=${tvshow.show.id}`;
+        tvshowLinkElement.href = `/single-item.php?movieid=${tvshow.show.id}`;
         tvshowLinkElement.textContent = "Show more";
         tvshowDetailsElement.appendChild(tvshowLinkElement);
       });
