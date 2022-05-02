@@ -1,10 +1,18 @@
 <?php
 
 // WORKING WITH DATABASE
+//hiding errors because of the two include below
+error_reporting(0);
+ini_set('display_errors', 0);
+
 
 // 1. Connect to the D.B.
 
-$conn = mysqli_connect("localhost", "root", "", "movie_db");
+//For the compatibility between Mac and Window
+include_once("../pages/data_window.php");
+include_once("../pages/data_mac.php");
+
+$conn = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
 // True if you are connected, false if not
 
@@ -14,7 +22,7 @@ if ($conn) {
 
     $query = 'SELECT a.id, a.name,a.nationality, a.picture, COUNT(*)
   FROM directors a 
-  INNER JOIN movies b ON b.director_id = a.id
+  LEFT JOIN movies b ON b.director_id = a.id
   GROUP BY a.id;';
 
     //3. Executing the query (send query to DB)
